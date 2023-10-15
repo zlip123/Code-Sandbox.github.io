@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode-style Code Sandbox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.css">
+</head>
+<body>
+    <h1>LeetCode-style Code Sandbox</h1>
+    
+    <select id="languageSelect">
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+        <option value="css">CSS</option>
+    </select>
+    
+    <textarea id="code" placeholder="Enter your code here"></textarea>
+    <button id="runButton">Run Code</button>
+    
+    <div id="output"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/python/python.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/clike/clike.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/css/css.js"></script>
+
+    <script>
+        const languageSelect = document.getElementById('languageSelect');
+        const codeEditor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: 'python',
+            theme: 'default',
+            lineNumbers: true,
+        });
+
+        function runCode() {
+            const selectedLanguage = languageSelect.value;
+            codeEditor.setOption('mode', selectedLanguage);
+            
+            const code = codeEditor.getValue();
+            const outputElement = document.getElementById('output');
+            outputElement.innerHTML = '';
+
+            try {
+                // Execute the user's code
+                const result = eval(`(function() { ${code} })()`);
+
+                // Display the result
+                outputElement.innerHTML += `<p>Output:</p><pre>${result}</pre>`;
+            } catch (error) {
+                // Display any errors
+                outputElement.innerHTML += `<p>Error:</p><pre>${error}</pre>`;
+            }
+        }
+
+        document.getElementById('runButton').addEventListener('click', runCode);
+    </script>
+</body>
+</html>
