@@ -4,15 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Sandbox</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css">
-    <style>
-        /* Add custom CSS styles for the code container */
-        .code-container {
-            max-width: 800px; /* Adjust as needed */
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Code Sandbox</h1>
@@ -23,47 +15,14 @@
         <option value="css">CSS</option>
     </select>
 
-    <!-- Apply a custom class to the code container -->
     <div class="code-container">
-        <textarea id="code" class="language-python"></textarea>
+        <textarea id="code" class="language-python" placeholder="Enter code here"></textarea>
     </div>
 
     <button id="runButton">Run Code</button>
 
     <div id="output"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-    <script>
-        // Initialize Prism.js for code highlighting and line numbers
-        document.addEventListener('DOMContentLoaded', () => {
-            Prism.highlightAll();
-        });
-
-        document.getElementById('runButton').addEventListener('click', () => {
-            const code = document.getElementById('code').value;
-            const outputElement = document.getElementById('output');
-            outputElement.innerHTML = '';
-
-            const selectedLanguage = document.getElementById('languageSelect').value;
-
-            fetch('/runcode', {
-                method: 'POST',
-                body: code,
-                headers: {
-                    'Content-Type': 'text/plain',
-                },
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Display the output
-                outputElement.innerHTML = `<p>Output:</p><pre>${data}</pre>`;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                outputElement.innerHTML = `<p>Error:</p><pre>${error}</pre>`;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
