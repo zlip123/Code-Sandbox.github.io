@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode-style Code Sandbox</title>
+</head>
+<body>
+    <h1>LeetCode-style Code Sandbox</h1>
+    
+    <textarea id="code" placeholder="Enter your code here"></textarea>
+    <button id="runButton">Run Code</button>
+    
+    <div id="output"></div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('code').value;
+            const outputElement = document.getElementById('output');
+            outputElement.innerHTML = '';
+
+            try {
+                // Execute the user's code
+                const result = eval(`(function() { ${code} })()`);
+
+                // Display the result
+                outputElement.innerHTML += `<p>Output:</p><pre>${result}</pre>`;
+            } catch (error) {
+                // Display any errors
+                outputElement.innerHTML += `<p>Error:</p><pre>${error}</pre>`;
+            }
+        }
+
+        document.getElementById('runButton').addEventListener('click', runCode);
+    </script>
+</body>
+</html>
