@@ -6,6 +6,13 @@
     <title>Code Sandbox</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css">
+    <style>
+        /* Add custom CSS styles for the code container */
+        .code-container {
+            max-width: 800px; /* Adjust as needed */
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <h1>Code Sandbox</h1>
@@ -16,7 +23,11 @@
         <option value="css">CSS</option>
     </select>
 
-    <pre><code id="code" class="language-python line-numbers"></code></pre>
+    <!-- Apply a custom class to the code container -->
+    <div class="code-container">
+        <pre><code id="code" class="language-python line-numbers"></code></pre>
+    </div>
+
     <button id="runButton">Run Code</button>
 
     <div id="output"></div>
@@ -25,8 +36,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
     <script>
         // Initialize Prism.js for code highlighting and line numbers
-        Prism.highlightAll();
-        Prism.plugins.lineNumbers.initialize();
+        document.addEventListener('DOMContentLoaded', () => {
+            Prism.highlightAll();
+        });
 
         document.getElementById('runButton').addEventListener('click', () => {
             const code = document.getElementById('code').textContent;
