@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeetCode-style Code Sandbox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.css">
 </head>
 <body>
     <h1>LeetCode-style Code Sandbox</h1>
@@ -13,9 +14,18 @@
     
     <div id="output"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/javascript/javascript.js"></script>
+
     <script>
+        const codeEditor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: 'javascript',
+            theme: 'default',
+            lineNumbers: true,
+        });
+
         function runCode() {
-            const code = document.getElementById('code').value;
+            const code = codeEditor.getValue();
             const outputElement = document.getElementById('output');
             outputElement.innerHTML = '';
 
