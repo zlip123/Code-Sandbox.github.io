@@ -18,6 +18,8 @@ app.post('/runcode', (req, res) => {
         } else {
             console.log(`Output: ${stdout}`);
             console.error(`Error Output: ${stderr}`);
+
+            // Send the output as the response
             res.send(stdout);
         }
     });
@@ -26,3 +28,6 @@ app.post('/runcode', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+// Client-side JavaScript
+app.use(express.static('public'));
