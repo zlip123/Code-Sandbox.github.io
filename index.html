@@ -25,7 +25,7 @@
 
     <!-- Apply a custom class to the code container -->
     <div class="code-container">
-        <pre><code id="code" class="language-python line-numbers"></code></pre>
+        <textarea id="code" class="language-python"></textarea>
     </div>
 
     <button id="runButton">Run Code</button>
@@ -41,7 +41,7 @@
         });
 
         document.getElementById('runButton').addEventListener('click', () => {
-            const code = document.getElementById('code').textContent;
+            const code = document.getElementById('code').value;
             const outputElement = document.getElementById('output');
             outputElement.innerHTML = '';
 
