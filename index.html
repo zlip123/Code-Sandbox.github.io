@@ -9,6 +9,12 @@
 <body>
     <h1>LeetCode-style Code Sandbox</h1>
     
+    <select id="languageSelect">
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+        <option value="css">CSS</option>
+    </select>
+    
     <textarea id="code" placeholder="Enter your code here"></textarea>
     <button id="runButton">Run Code</button>
     
@@ -16,15 +22,22 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/python/python.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/clike/clike.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/css/css.js"></script>
 
     <script>
+        const languageSelect = document.getElementById('languageSelect');
         const codeEditor = CodeMirror.fromTextArea(document.getElementById('code'), {
-            mode: 'javascript',
+            mode: 'python',
             theme: 'default',
             lineNumbers: true,
         });
 
         function runCode() {
+            const selectedLanguage = languageSelect.value;
+            codeEditor.setOption('mode', selectedLanguage);
+            
             const code = codeEditor.getValue();
             const outputElement = document.getElementById('output');
             outputElement.innerHTML = '';
