@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Sandbox</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css">
 </head>
 <body>
     <h1>Code Sandbox</h1>
@@ -15,18 +16,20 @@
         <option value="css">CSS</option>
     </select>
 
-    <textarea id="code" placeholder="Enter code here" class="language-python"></textarea>
+    <pre><code id="code" class="language-python line-numbers"></code></pre>
     <button id="runButton">Run Code</button>
 
     <div id="output"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
     <script>
-        // Initialize Prism.js for code highlighting
+        // Initialize Prism.js for code highlighting and line numbers
         Prism.highlightAll();
+        Prism.plugins.lineNumbers.initialize();
 
         document.getElementById('runButton').addEventListener('click', () => {
-            const code = document.getElementById('code').value;
+            const code = document.getElementById('code').textContent;
             const outputElement = document.getElementById('output');
             outputElement.innerHTML = '';
 
